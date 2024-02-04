@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnGoToRegistration.setOnClickListener {
             startActivity(Intent(this, RegistrationActivity::class.java))
+            finish()
         }
 
         // Observe the login result

@@ -55,6 +55,7 @@ class TaskListActivity : AppCompatActivity() {
     }
 
    private fun showBottomSheetForTask(task: TaskModel? = null) {
+
        val bottomSheetView = LayoutInflater.from(this).inflate(R.layout.bottom_sheet_task, null)
        val dialog = BottomSheetDialog(this, R.style.TaskBottomSheetDialog)
        dialog.setContentView(bottomSheetView)
@@ -66,7 +67,25 @@ class TaskListActivity : AppCompatActivity() {
        val btnSave = bottomSheetView.findViewById<Button>(R.id.btnSave)
        val btnDelete = bottomSheetView.findViewById<Button>(R.id.btnDelete)
        val statusSpinner = bottomSheetView.findViewById<Spinner>(R.id.spinnerStatus)
+        fun isValidTitle(title: String): Boolean {
+           return if (title.isNotEmpty()) {
+               true
+           } else {
+               editTitle.error = getString(R.string.enter_valid_title)
+               editTitle.requestFocus()
+               false
+           }
+       }
 
+        fun isValidDescription(description: String): Boolean {
+           return if (description.isNotEmpty()) {
+               true
+           } else {
+               editDescription.error = getString(R.string.enter_valid_description)
+               editDescription.requestFocus()
+               false
+           }
+       }
        // Set initial data for editing task
        task?.let {
            editTitle.setText(it.title)
@@ -100,21 +119,27 @@ class TaskListActivity : AppCompatActivity() {
            val description = editDescription.text.toString()
            val status = statusSpinner.selectedItem.toString()
 
-           if (task == null) {
-               // Adding new task
-               taskViewModel.createNewTask(title, description, status)
-               Toast.makeText(this, getString(R.string.task_added_successfully), Toast.LENGTH_SHORT).show()
-           } else {
-               // Updating existing task
-               task.taskId?.let { taskId ->
-                   taskViewModel.updateTask(taskId, title, description, status)
-                   Toast.makeText(this,
-                       getString(R.string.task_updated_successfully), Toast.LENGTH_SHORT).show()
+               if (isValidTitle(title) && isValidDescription(description)) {
+                   if (task == null) {
+                       // Adding new task
+                       taskViewModel.createNewTask(title, description, status)
+                       Toast.makeText(this, getString(R.string.task_added_successfully), Toast.LENGTH_SHORT).show()
+                   } else {
+                       // Updating existing task
+                       task.taskId?.let { taskId ->
+                           taskViewModel.updateTask(taskId, title, description, status)
+                           Toast.makeText(this,
+                               getString(R.string.task_updated_successfully), Toast.LENGTH_SHORT).show()
+                       }
+                   }
+
+                   // Dismiss the bottom sheet
+                   dialog.dismiss()
                }
-           }
+
 
            // Dismiss the bottom sheet
-           dialog.dismiss()
+          // dialog.dismiss()
        }
 
        dialog.show()
