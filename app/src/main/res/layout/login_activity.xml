@@ -6,39 +6,45 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="16dp"
         tools:context=".LoginActivity">
 
         <EditText
             android:id="@+id/editEmail"
+            style="@style/EditTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:layout_marginTop="16dp"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/editPassword"
+            style="@style/EditTextField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:layout_below="@id/editEmail"
             android:layout_marginTop="8dp"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/btnLogin"
+            style="@style/PrimaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login"
             android:layout_below="@id/editPassword"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp" />
 
         <Button
             android:id="@+id/btnGoToRegistration"
+            style="@style/SecondaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Go to Registration"
+            android:text="@string/go_to_registration"
             android:layout_below="@id/btnLogin"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp" />
     </RelativeLayout>
 </layout>
