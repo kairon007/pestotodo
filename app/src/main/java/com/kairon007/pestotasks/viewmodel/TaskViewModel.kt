@@ -17,16 +17,31 @@ class TaskViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val tasksRepository: TasksRepository
 ) : ViewModel() {
+    private val _filteredTasks = MutableLiveData<List<TaskModel>>()
+    val filteredTasks: LiveData<List<TaskModel>> get() = _filteredTasks
 
-    private val _tasks = MutableLiveData<List<TaskModel>>()
-    val tasks: LiveData<List<TaskModel>> get() = _tasks
     private val _isUserSignedIn = MutableLiveData<Boolean>()
     val isUserSignedIn: LiveData<Boolean> get() = _isUserSignedIn
+    private var currentFilter: String = "All"
+
     fun logout() {
         authRepository.logout()
     }
     fun deleteTask(taskId: String) {
         tasksRepository.deleteTask(taskId)
+    }
+    private fun filterTasks(allTasks: List<TaskModel>): List<TaskModel> {
+        return when (currentFilter) {
+            "All" -> allTasks // Return all tasks
+            "To Do" -> allTasks.filter { it.status == "To Do" }
+            "In Progress" -> allTasks.filter { it.status == "In Progress" }
+            "Done" -> allTasks.filter { it.status == "Done" }
+            else -> allTasks // Default to all tasks
+        }
+    }
+    fun setFilter(filter: String) {
+        currentFilter = filter
+        loadTasks()
     }
 
     private fun checkUserAuthentication() {
@@ -38,17 +53,15 @@ class TaskViewModel @Inject constructor(
     }
 
     fun createNewTask(title: String, description: String, status: String) {
-        // Example: Use viewModelScope to launch a coroutine for background work
         viewModelScope.launch {
-            // Example: Create a new task and add it to the repository
             val newTask = TaskModel(taskId = "", title = title, description = description, status = status)
             tasksRepository.addTask(newTask)
         }
     }
     private fun loadTasks() {
-        // Example: Use the repository to get tasks from Firebase
         tasksRepository.getTasks { tasks ->
-            _tasks.postValue(tasks)
+            val filteredTasks = filterTasks(tasks)
+            _filteredTasks.postValue(filteredTasks)
         }
     }
 
