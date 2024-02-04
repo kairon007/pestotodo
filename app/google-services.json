@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1001532720579",
+    "project_id": "pestotech-10e80",
+    "storage_bucket": "pestotech-10e80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001532720579:android:ac88a7e6c4ecf9c807a976",
+        "android_client_info": {
+          "package_name": "com.kairon007.pestotasks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHxIRyOnx4Hty60ESlK6fCpp-FP7ctEWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
