@@ -1,4 +1,4 @@
-package com.kairon007.pestotasks
+package com.kairon007.pestotasks.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.kairon007.pestotasks.repository.AuthRepository

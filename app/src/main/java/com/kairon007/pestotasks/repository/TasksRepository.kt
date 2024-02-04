@@ -15,9 +15,8 @@ class TasksRepository @Inject constructor(
 ) {
     fun addTask(task: TaskModel) {
         val newTaskRef = firebaseDatabase.push()
-        val taskId = newTaskRef.key
         val newTask = TaskModel(
-            taskId ?: "", // Ensure taskId is not null
+            newTaskRef.key ?: "", // Ensure taskId is not null
             title = task.title,
             description = task.description,
             status = task.status
@@ -25,7 +24,13 @@ class TasksRepository @Inject constructor(
 
         newTaskRef.setValue(newTask)
     }
-    fun updateTask(taskId: String, updatedTitle: String, updatedDescription: String,status:String) {
+
+    fun updateTask(
+        taskId: String,
+        updatedTitle: String,
+        updatedDescription: String,
+        status: String
+    ) {
         val taskUpdates = hashMapOf<String, Any>(
             "title" to updatedTitle,
             "description" to updatedDescription,
@@ -33,9 +38,11 @@ class TasksRepository @Inject constructor(
         )
         firebaseDatabase.child(taskId).updateChildren(taskUpdates)
     }
+
     fun deleteTask(taskId: String) {
         firebaseDatabase.child(taskId).removeValue()
     }
+
     fun getTasks(callback: (List<TaskModel>) -> Unit) {
         firebaseDatabase.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
