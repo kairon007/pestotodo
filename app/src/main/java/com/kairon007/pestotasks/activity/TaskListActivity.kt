@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
@@ -42,26 +41,7 @@ class TaskListActivity : AppCompatActivity() {
 
         taskViewModel.initialise()
 
-        val spinnerFilter = findViewById<Spinner>(R.id.spinnerFilter)
 
-        val filterAdapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.filter_array,
-            android.R.layout.simple_spinner_item
-        )
-        filterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerFilter.adapter = filterAdapter
-
-        spinnerFilter.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parentView: AdapterView<*>?, selectedItemView: View?, position: Int, id: Long) {
-                val selectedFilter = parentView?.getItemAtPosition(position).toString()
-                taskViewModel.setFilter(selectedFilter)
-            }
-
-            override fun onNothingSelected(parentView: AdapterView<*>?) {
-                // Do nothing here
-            }
-        }
         taskViewModel.isUserSignedIn.observe(this){
            if(!it){
                val intent = Intent(this@TaskListActivity, LoginActivity::class.java)
@@ -69,7 +49,6 @@ class TaskListActivity : AppCompatActivity() {
                finish()
            }
         }
-
         taskViewModel.filteredTasks.observe(this) { tasks ->
             taskAdapter = TaskAdapter(this@TaskListActivity, tasks) {
                 showBottomSheetForTask(it)
@@ -184,6 +163,11 @@ class TaskListActivity : AppCompatActivity() {
                 finish()
                 return true
             }
+            R.id.all,R.id.in_progress,R.id.todo,R.id.done-> {
+                taskViewModel.setFilter(item.title.toString())
+                return true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

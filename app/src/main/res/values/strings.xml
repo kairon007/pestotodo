@@ -20,9 +20,14 @@
     <string name="authentication_failed">Authentication failed.</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
+    <string name="filter">Filter</string>
     <string name="go_to_registration">Go to Registration</string>
     <string name="valid_email">Enter a valid email address</string>
     <string name="password_valid">Password must be at least 6 characters long</string>
     <string name="enter_valid_title">Enter valid title</string>
     <string name="enter_valid_description">Enter valid description</string>
+    <string name="all">All</string>
+    <string name="todo">To Do</string>
+    <string name="in_progress">In Progress</string>
+    <string name="done">Done</string>
 </resources>

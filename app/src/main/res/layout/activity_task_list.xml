@@ -8,18 +8,10 @@
         tools:context=".TaskListActivity">
 
 
-
-        <Spinner
-            android:id="@+id/spinnerFilter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/filter_array" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTasks"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/spinnerFilter"
             android:layout_marginTop="8dp" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -30,7 +22,6 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:contentDescription="TODO"
-            app:srcCompat="@android:drawable/ic_menu_add" />
+            app:srcCompat="@drawable/ic_add_task" />
     </RelativeLayout>
 </layout>

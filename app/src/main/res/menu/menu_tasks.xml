@@ -4,6 +4,19 @@
     <item
         android:id="@+id/action_logout"
         android:title="@string/logout"
-        app:showAsAction="always" />
+        android:icon="@drawable/ic_logout"
+        app:showAsAction="collapseActionView" />
 
+    <item
+        android:id="@+id/filter"
+        android:title="@string/filter"
+        android:icon="@drawable/ic_filter_tasks"
+        app:showAsAction="always" >
+        <menu>
+            <item android:id="@+id/all" android:title="@string/all" app:showAsAction="always" />
+            <item android:id="@+id/todo" android:title="@string/todo" app:showAsAction="always" />
+            <item android:id="@+id/in_progress" android:title="@string/in_progress" app:showAsAction="always" />
+            <item android:id="@+id/done" android:title="@string/done" app:showAsAction="always" />
+        </menu>
+    </item>
 </menu>
