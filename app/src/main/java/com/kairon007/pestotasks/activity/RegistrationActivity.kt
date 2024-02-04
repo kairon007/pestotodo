@@ -25,12 +25,15 @@ class RegistrationActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         title = getString(R.string.registration)
-        // Set up click listeners
         binding.btnRegister.setOnClickListener {
-            registrationViewModel.registerUser(
-                binding.editRegisterEmail.text.toString(),
-                binding.editRegisterPassword.text.toString()
-            )
+            val email = binding.editRegisterEmail.text.toString()
+            val password = binding.editRegisterPassword.text.toString()
+            binding.textInputLayoutEmail.error = null
+            binding.textInputLayoutPassword.error = null
+            if (isValidEmail(email) && isValidPassword(password)) {
+                registrationViewModel.registerUser(email, password)
+            }
+
         }
 
         binding.btnGoToLogin.setOnClickListener {
@@ -49,6 +52,23 @@ class RegistrationActivity : AppCompatActivity() {
                 // Registration failed
                 Toast.makeText(this, getString(R.string.reg_failed), Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+    private fun isValidEmail(email: String): Boolean {
+        return if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            true
+        } else {
+            binding.textInputLayoutEmail.error = getString(R.string.valid_email)
+            false
+        }
+    }
+
+    private fun isValidPassword(password: String): Boolean {
+        return if (password.length >= 6) {
+            true
+        } else {
+            binding.textInputLayoutPassword.error = getString(R.string.password_valid)
+            false
         }
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

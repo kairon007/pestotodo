@@ -21,4 +21,6 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="go_to_registration">Go to Registration</string>
+    <string name="valid_email">Enter a valid email address</string>
+    <string name="password_valid">Password must be at least 6 characters long</string>
 </resources>

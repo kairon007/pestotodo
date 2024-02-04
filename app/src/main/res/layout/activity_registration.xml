@@ -2,36 +2,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editRegisterEmail"
-        style="@style/EditTextField"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:autofillHints="emailAddress"
-        android:hint="@string/email"
-        android:inputType="textEmailAddress" />
+        app:boxBackgroundMode="none"
+        android:background="@drawable/rounded_et_bg">
 
-    <EditText
-        android:id="@+id/editRegisterPassword"
-        style="@style/EditTextField"
+        <EditText
+            android:id="@+id/editRegisterEmail"
+            style="@style/EditTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:autofillHints="emailAddress"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editRegisterEmail"
+        android:layout_below="@id/textInputLayoutEmail"
         android:layout_marginTop="8dp"
-        android:autofillHints="password"
-        android:hint="@string/password"
-        android:inputType="textPassword" />
+        app:boxBackgroundMode="none"
+        android:background="@drawable/rounded_et_bg">
+
+        <EditText
+            android:id="@+id/editRegisterPassword"
+            style="@style/EditTextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editRegisterEmail"
+            android:layout_marginTop="8dp"
+            android:autofillHints="password"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnRegister"
         style="@style/PrimaryButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/editRegisterPassword"
+        android:layout_below="@id/textInputLayoutPassword"
         android:layout_marginTop="16dp"
         android:text="@string/register" />
 
