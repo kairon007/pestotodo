@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">PestoTasks</string>
+    <string name="select_status">Status</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="reg_success">Registration successful!Please Login</string>
+    <string name="reg_failed">Registration failed.</string>
+    <string name="email">Email\n</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="go_to_login">Go to Login</string>
+    <string name="registration">Registration</string>
+    <string name="tasks_list">Tasks List</string>
+    <string name="task_deleted_successfully">Task deleted successfully!</string>
+    <string name="task_updated_successfully">Task updated successfully!</string>
+    <string name="task_added_successfully">Task added successfully!</string>
+    <string name="login_successful">Login successful!</string>
+    <string name="authentication_failed">Authentication failed.</string>
+    <string name="login">Login</string>
+</resources>
