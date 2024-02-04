@@ -16,6 +16,7 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.ArgumentMatchers.any
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.times
@@ -39,6 +40,8 @@ class TaskViewModelTest {
     @Mock
     lateinit var tasksRepository: TasksRepository
 
+
+
     private lateinit var taskViewModel: TaskViewModel
 
     @Before
@@ -56,6 +59,29 @@ class TaskViewModelTest {
         Dispatchers.resetMain()
         testCoroutineScope.cleanupTestCoroutines()
     }
+    @Test
+    fun `initialise sets isUserSignedIn to true when user is signed in`() {
+        // Given
+        `when`(authRepository.getCurrentUser()).thenReturn(true)
+
+        // When
+        taskViewModel.initialise()
+
+        // Then
+        assert(taskViewModel.isUserSignedIn.value == true)
+    }
+    @Test
+    fun `initialise sets isUserSignedIn to false when user is not signed in`() {
+        // Given
+        `when`(authRepository.getCurrentUser()).thenReturn(false)
+
+        // When
+        taskViewModel.initialise()
+
+        // Then
+        assert(taskViewModel.isUserSignedIn.value == false)
+    }
+
 
     @Test
     fun `check user authentication calls repository`() = testCoroutineScope.runBlockingTest {

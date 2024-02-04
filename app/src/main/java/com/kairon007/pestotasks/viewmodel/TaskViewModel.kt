@@ -58,7 +58,7 @@ class TaskViewModel @Inject constructor(
             tasksRepository.addTask(newTask)
         }
     }
-    private fun loadTasks() {
+    fun loadTasks() {
         tasksRepository.getTasks { tasks ->
             val filteredTasks = filterTasks(tasks)
             _filteredTasks.postValue(filteredTasks)
