@@ -54,6 +54,11 @@ class TaskListActivity : AppCompatActivity() {
                 showBottomSheetForTask(it)
             }
             binding.recyclerViewTasks.adapter = taskAdapter
+            if (tasks.isEmpty()) {
+                binding.txtNoTasks.visibility = View.VISIBLE
+            } else {
+                binding.txtNoTasks.visibility = View.GONE
+            }
         }
 
     }
