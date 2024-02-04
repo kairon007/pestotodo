@@ -17,6 +17,9 @@ class AuthRepository @Inject constructor(private val auth: FirebaseAuth) {
                 }
             }
     }
+    fun logout() {
+        auth.signOut()
+    }
     fun getCurrentUser(): Boolean {
         return auth.currentUser != null
     }

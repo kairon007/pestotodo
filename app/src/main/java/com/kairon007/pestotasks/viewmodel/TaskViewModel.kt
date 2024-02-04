@@ -22,7 +22,9 @@ class TaskViewModel @Inject constructor(
     val tasks: LiveData<List<TaskModel>> get() = _tasks
     private val _isUserSignedIn = MutableLiveData<Boolean>()
     val isUserSignedIn: LiveData<Boolean> get() = _isUserSignedIn
-
+    fun logout() {
+        authRepository.logout()
+    }
     fun deleteTask(taskId: String) {
         tasksRepository.deleteTask(taskId)
     }
